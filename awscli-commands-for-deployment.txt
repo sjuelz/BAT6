@@ -1,0 +1,17 @@
+aws lambda create-function --function-name CreateThumbnail --package-type Image --code={\"ImageUri\":\"206163719420.dkr.ecr.us-east-2.amazonaws.com/tech-x-container-repo:helloworldfunction-ba326c24d1cd-python3.7-v1\"} --role arn:aws:iam::206163719420:role/lambda-s3-role
+
+aws lambda add-permission --function-name CreateThumbnail --principal s3.amazonaws.com \
+--statement-id s3invoke --action "lambda:InvokeFunction" \
+--source-arn arn:aws:s3:::photobucket4bahtechx \
+--source-account 206163719420
+
+aws lambda add-permission --function-name another-app-HelloWorldFunction-ojHZ3bh1STJd --principal s3.amazonaws.com \
+--statement-id s3invoke --action "lambda:InvokeFunction" \
+--source-arn arn:aws:s3:::photobucket4bahtechx \
+--source-account 206163719420
+
+aws lambda add-permission --function-name another-app-HelloWorldFunction-ojHZ3bh1STJd \
+--source-arn arn:aws:sns:us-east-2:206163719420:s3triggertest \
+--statement-id another-app-HelloWorldFunction-ojHZ3bh1STJd --action "lambda:InvokeFunction" \
+--principal sns.amazonaws.com
+

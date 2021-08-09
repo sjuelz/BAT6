@@ -29,4 +29,4 @@ def lambda_handler(event, context):
       upload_path = '/tmp/pencilsketches-{}'.format(tmpkey)
       s3_client.download_file(bucket, key, download_path)
       pencilSketch(download_path, upload_path)
-      s3_client.upload_file(upload_path, '{}-pencilsketches'.format(bucket), key)
+      s3_client.upload_file(upload_path, '{}-destination1'.format(bucket), key)

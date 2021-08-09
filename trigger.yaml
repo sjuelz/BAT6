@@ -1,0 +1,25 @@
+NotificationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: handlers/
+      Handler: notification.handleS3Notification
+      Runtime: nodejs12.x
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - s3:GetObject
+              Resource:
+                - arn:aws:s3:::s3-trigger-compare/uploads/*
+      Events:
+        NotificationEvent:
+          Type: S3
+          Properties:
+            Bucket: !Ref TriggerBucket
+            Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: 'uploads/'

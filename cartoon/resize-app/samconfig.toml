@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "resize-app"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-xb6ooz6jpo3a"
+s3_prefix = "resize-app"
+region = "us-east-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = ["HelloWorldFunction=206163719420.dkr.ecr.us-east-2.amazonaws.com/tech-x-container-repo"]
